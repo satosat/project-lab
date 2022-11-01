@@ -1,4 +1,4 @@
-<footer class="footer bg-black text-center p-4" style="position: absolute; bottom: 0; width: 100%">
+<footer class="footer bg-black text-center p-4 mt-5" style="position: relative; bottom: 0; width: 100%; height: 20rem">
     <div class="footer-container">
         <div class="footer-title text-danger p-2">
             <h3>MovieList</h3>
