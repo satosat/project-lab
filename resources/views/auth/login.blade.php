@@ -3,7 +3,7 @@
 @section('title', 'Login')
 
 @section('content')
-    <div class="container d-flex justify-content-center">
+    <div class="container d-flex justify-content-center bg-dark">
         <div>
             <div class="mt-5 d-flex">
                 <p class="text-white fs-1 fw-semibold">Hello, Welcome back to MovieList</p>
