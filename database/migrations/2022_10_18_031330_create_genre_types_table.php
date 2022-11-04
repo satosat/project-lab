@@ -13,16 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('actors', function (Blueprint $table) {
+        Schema::create('genre_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('biography', 510);
-            $table->double('popularity');
-            $table->string('gender');
-            $table->date('dob');
-            $table->string('birthplace');
-            $table->string('image_source');
-            $table->timestamps();
+            $table->string('genre');
         });
     }
 
@@ -33,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actors');
+        Schema::dropIfExists('genre_types');
     }
 };
