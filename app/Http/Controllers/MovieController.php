@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actor;
+use App\Models\GenreType;
+use App\Models\Movie;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -23,7 +26,10 @@ class MovieController extends Controller
      */
     public function create()
     {
-        //
+        return view('movies.create', [
+            'actors' => Actor::all(),
+            'genres' => GenreType::all(),
+        ]);
     }
 
     /**
@@ -45,7 +51,9 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('movies.edit', [
+            'movie' => Movie::where($id)
+        ]);
     }
 
     /**
