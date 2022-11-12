@@ -14,43 +14,36 @@
 
                     {{-- Username --}}
                     <div>
-                        <x-input-label class="form-label text-white" for="username" :value="__('Username')" />
-
-                        <x-text-input id="username" class="block mt-1 w-full form-control" type="text" name="username"
-                            :value="old('username')" required autofocus />
-
-                        <x-input-error :messages="$errors->get('username')" class="mt-2 text-white" />
+                        <label for="username" class="form-label text-white">Username</label>
+                        <input type="text" class="mt-1 w-100 form-control" name="username" id="username">
                     </div>
 
                     <!-- Email Address -->
                     <div class="mt-4">
-                        <x-input-label class="form-label text-white" for="email" :value="__('Email')" />
-
-                        <x-text-input id="email" class="block mt-1 w-full form-control" type="email" name="email"
-                            :value="old('email')" required />
-
-                        <x-input-error :messages="$errors->get('email')" class="mt-2 text-white" />
+                        <label for="email" class="form-label text-white">Email</label>
+                        <input type="email" class="mt-1 w-100 form-control" name="email" id="email">
                     </div>
 
                     <!-- Password -->
                     <div class="mt-4">
-                        <x-input-label class="form-label text-white" for="password" :value="__('Password')" />
-
-                        <x-text-input id="password" class="block mt-1 w-full form-control" type="password" name="password"
-                            required autocomplete="new-password" />
-
-                        <x-input-error :messages="$errors->get('password')" class="mt-2 text-white" />
+                        <label for="password" class="form-label text-white">Password</label>
+                        <input type="password" class="mt-1 w-100 form-control" name="password" id="password">
                     </div>
 
                     <!-- Confirm Password -->
                     <div class="mt-4">
-                        <x-input-label class="form-label text-white" for="password_confirmation" :value="__('Confirm Password')" />
-
-                        <x-text-input id="password_confirmation" class="block mt-1 w-full form-control" type="password"
-                            name="password_confirmation" required />
-
-                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 text-white" />
+                        <label for="password_confirmation" class="form-label text-white">Confirm Password</label>
+                        <input type="password" class="mt-1 w-100 form-control" name="password_confirmation"
+                            id="password_confirmation">
                     </div>
+
+                    @if ($errors->any())
+                        <div class="mt-3">
+                            @foreach ($errors->all() as $error)
+                                <li class="text-danger">{{ $error }}</li>
+                            @endforeach
+                        </div>
+                    @endif
 
                     <div class="d-flex justify-content-center mt-4">
                         <button type="submit" class="btn btn-primary w-100">Register</button>
