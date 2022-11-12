@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('genres', function (Blueprint $table) {
             $table->id();
-            $table->string('genre', 50);
             $table->unsignedBigInteger('movie_id');
+            $table->unsignedBigInteger('genre_id');
 
             // foreign key to movies table
             $table->foreign('movie_id')->references('id')->on('movies');
+            $table->foreign('genre_id')->references('id')->on('genre_types');
         });
     }
 
