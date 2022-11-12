@@ -5,7 +5,7 @@
 @section('content')
     <div class="container bg-dark mt-2">
         <h2 class="text-white">Add Movie</h2>
-        <form method="POST" action="{{ route('add book') }}" class="inline-block">
+        <form method="POST" action="{{ route('add movie') }}" class="inline-block">
             @csrf
 
             {{-- Title --}}
@@ -37,7 +37,7 @@
                     <div style="width: 48%">
                         <label class="form-label text-white" for="actor">Actor</label>
                         <select name="actor" id="actor" class="form-select bg-dark text-white">
-                            <option selected="selected" disabledgenre>-- Open this select menu --</option>
+                            <option selected="selected" disabled>-- Open this select menu --</option>
                             @foreach ($actors as $actor)
                                 <option value="{{ $actor->name }}">{{ $actor->name }}</option>
                             @endforeach
