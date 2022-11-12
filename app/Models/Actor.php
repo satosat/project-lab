@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Actor extends Model
 {
     use HasFactory;
+
+    /**
+     * Get associated characters
+     */
+    public function characters()
+    {
+        return $this->hasMany(Character::class);
+    }
 }
