@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actor;
 use Illuminate\Http\Request;
 
 class ActorController extends Controller
@@ -11,9 +12,20 @@ class ActorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $actors = null;
+
+        if ($request->get('q')) {
+            $actor = $request->get('q');
+            $actors = Actor::where('name', 'LIKE', "%$actor%")->get();
+        } else {
+            $actors = Actor::all();
+        }
+
+        return view('actors.index', [
+            'actors' => $actors,
+        ]);
     }
 
     /**
@@ -45,7 +57,9 @@ class ActorController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('actors.show', [
+            'actor' => Actor::findOrFail($id),
+        ]);
     }
 
     /**
