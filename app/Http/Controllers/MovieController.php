@@ -6,6 +6,7 @@ use App\Models\Actor;
 use App\Models\GenreType;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MovieController extends Controller
 {
@@ -16,7 +17,8 @@ class MovieController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $movies = Movie::paginate(5);
+        return view('movies.index', ['movies' => Movie::all(), 'genres' => GenreType::all()])->with('movies', $movies);
     }
 
     /**
