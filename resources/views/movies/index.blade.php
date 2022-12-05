@@ -4,82 +4,97 @@
 
 @section('content')
 
-    {{-- Banner --}}
-    <div class="bg-dark text-white">
-        <div class="d-flex align-items-middle carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-            </div>
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
 
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="/images/banner_matrix.jpeg" alt="Matrix" class="d-block" style="width:100%; height:500px">
-                    <div class="carousel-caption text-white mb-lg-5 text-right">
-                        <div class="row-sm-2 mb-3 d-flex">
-                            <div class="col-2">Action | 2021</div>
-                        </div>
-
-                        <div class="row-sm-2 mb-3 d-flex"><h3>The Matrix Reserrections</h3></div>
-
-                        <div class="row-sm-2 mb-lg-5 d-flex"><p>To find out if his reality is a physical or mental construct</p></div>
-
-                        <div class="row-sm-2 mb-lg-5 d-flex">
-                            <button class="btn btn-danger">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
-                                </svg>
-                                Add To WatchLists
-                            </button>
-                        </div>
-                    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="/images/banner_matrix.jpeg" alt="Matrix" class="d-block" style="width:100%; height:500px">
+            <div class="carousel-caption text-white mb-lg-5 text-right">
+                <div class="row-sm-2 mb-3 d-flex">
+                    <div class="col-2">Action | 2021</div>
                 </div>
 
-                
+                <div class="row-sm-2 mb-3 d-flex"><h3>The Matrix Reserrections</h3></div>
 
-                <div class="carousel-item">
-                    <img src="/images/banner_spiderman.webp" alt="Black Panther" class="d-block"
-                        style="width:100%; height:500px">
-                    <div class="carousel-caption text-white mb-lg-5 text-right">
-                        <div class="row-sm-2 mb-3 d-flex">
-                            <div class="col-sm-1">
-                                Action
-                            </div>
-                            <div class="col-sm-1">
-                                |
-                            </div>
-                            <div class="col-sm-1">
-                                2021
-                            </div>
-                        </div>
+                <div class="row-sm-2 mb-lg-5 d-flex"><p>To find out if his reality is a physical or mental construct</p></div>
 
-                        <div class="row-sm-2 mb-3 d-flex">
-                            <h3>Spiderman : No Way Home</h3>
-                        </div>
+                <div class="row-sm-2 mb-lg-5 d-flex">
+                    <button class="btn btn-danger">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-plus-lg" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                        </svg>
+                        Add To WatchLists
+                    </button>
+                </div>
+            </div>
+        </div>
 
-                        <div class="row-sm-2 mb-lg-5 d-flex">
-                            <p>With Spider-Man's identity now revealed, our friendly neighborhood web-slinger is unmasked.
-                            </p>
-                        </div>
+        <div class="carousel-item active">
+            <img src="/images/banner_matrix.jpeg" alt="Matrix" class="d-block" style="width:100%; height:500px">
+            <div class="carousel-caption text-white mb-lg-5 text-right">
+                <div class="row-sm-2 mb-3 d-flex">
+                    <div class="col-2">Action | 2021</div>
+                </div>
 
-                        <div class="row-sm-2 mb-lg-5 d-flex">
-                            <button class="btn btn-danger">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
-                                </svg>
-                                Add To WatchLists
-                            </button>
-                        </div>
-                    </div>
+                <div class="row-sm-2 mb-3 d-flex"><h3>The Matrix Reserrections</h3></div>
+
+                <div class="row-sm-2 mb-lg-5 d-flex"><p>To find out if his reality is a physical or mental construct</p></div>
+
+                <div class="row-sm-2 mb-lg-5 d-flex">
+                    <button class="btn btn-danger">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-plus-lg" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                        </svg>
+                        Add To WatchLists
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item active">
+            <img src="/images/banner_matrix.jpeg" alt="Matrix" class="d-block" style="width:100%; height:500px">
+            <div class="carousel-caption text-white mb-lg-5 text-right">
+                <div class="row-sm-2 mb-3 d-flex">
+                    <div class="col-2">Action | 2021</div>
+                </div>
+
+                <div class="row-sm-2 mb-3 d-flex"><h3>The Matrix Reserrections</h3></div>
+
+                <div class="row-sm-2 mb-lg-5 d-flex"><p>To find out if his reality is a physical or mental construct</p></div>
+
+                <div class="row-sm-2 mb-lg-5 d-flex">
+                    <button class="btn btn-danger">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-plus-lg" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                        </svg>
+                        Add To WatchLists
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+
+    <button class="carousel-control-prev text-dark" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+
+    <button class="carousel-control-next text-dark" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 
 
     <div class="content">
@@ -96,11 +111,13 @@
         <div class="row p-3 mx-4 mt-3">
             @foreach ($movies as $movie)
                 <div class="col m-2">
-                <img src={{ "images/".$movie->thumbnail_source }} alt="" style="background-size: 90%; height: 300px; width : 200px ">
-                    <div class="movie text-white align-self-right">
-                        <div class="title">{{ $movie->title }}</div>
-                        <div class="year">{{ $movie->release_date }}</div>
-                    </div>
+                    <a href={{ "movies/".$movie->id }} style="text-decoration:none">
+                        <img src={{ "images/".$movie->thumbnail_source }} alt="" style="background-size: 90%; height: 300px; width : 200px ">
+                        <div class="movie text-white align-self-right">
+                            <div class="title">{{ $movie->title }}</div>
+                            <div class="year">{{ $movie->release_date }}</div>
+                        </div>
+                    </a>
                 </div>
             @endforeach   
         </div>
@@ -167,13 +184,13 @@
 
         <div class="row p-3 mx-4 mt-3">
             @foreach ($movies as $movie)
-                <div class="col m-2">
-                <img src={{ "images/".$movie->thumbnail_source }} alt="" style="background-size: 90%; height: 300px; width : 200px ">
+                <a href={{ "movies/".$movie->id }} style="text-decoration:none">
+                    <img src={{ "images/".$movie->thumbnail_source }} alt="" style="background-size: 90%; height: 300px; width : 200px ">
                     <div class="movie text-white align-self-right">
                         <div class="title">{{ $movie->title }}</div>
                         <div class="year">{{ $movie->release_date }}</div>
                     </div>
-                </div>
+                </a>
             @endforeach   
         </div>
     </div>

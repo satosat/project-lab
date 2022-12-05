@@ -17,7 +17,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $movies = Movie::paginate(5);
+        $movies = Movie::simplePaginate(5);
         return view('movies.index', ['movies' => Movie::all(), 'genres' => GenreType::all()])->with('movies', $movies);
     }
 
@@ -53,8 +53,9 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-        return view('movies.edit', [
-            'movie' => Movie::where($id)
+        $movie = DB::table('movies')->get();
+        return view('movies.show', [
+            'movie' => Movie::where($id),
         ]);
     }
 
@@ -66,7 +67,9 @@ class MovieController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('movies.edit', [
+            'movie' => Movie::where($id)
+        ]);
     }
 
     /**
