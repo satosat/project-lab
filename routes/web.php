@@ -5,14 +5,6 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-});
-
-Route::get('/movies/{id}', function ($id) {
-    return view('movieDetail');
-});
-
 // Register
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('new user');
