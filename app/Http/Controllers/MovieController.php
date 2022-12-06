@@ -17,8 +17,10 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $movies = Movie::simplePaginate(5);
-        return view('movies.index', ['movies' => Movie::all(), 'genres' => GenreType::all()])->with('movies', $movies);
+        return view('movies.index', [
+            'movies' => Movie::all(), 
+            'genres' => GenreType::all()
+        ]);
     }
 
     /**
@@ -51,11 +53,11 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Movie $id)
     {
-        $movie = DB::table('movies')->get();
         return view('movies.show', [
-            'movie' => Movie::where($id),
+            'movie' => $id,
+            'movies' => Movie::all()
         ]);
     }
 

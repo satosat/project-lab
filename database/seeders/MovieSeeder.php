@@ -30,16 +30,16 @@ class MovieSeeder extends Seeder
             'Description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
             'release_date' => "2021-04-12",
             'thumbnail_source' => "minion.jpeg",
-            'background_source' => "",
+            'background_source' => "banner_greatest.jpg",
             'director' => 'lorem',
         ]);
 
         DB::table('movies')->insert([
-            'title' => "Spiderman : No Way Home",
+            'title' => "Spiderman",
             'Description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
             'release_date' => "2021-04-12",
             'thumbnail_source' => "spiderman.jpg",
-            'background_source' => "",
+            'background_source' => "banner_spiderman.webp",
             'director' => "lorem",
         ]);
 
@@ -48,7 +48,7 @@ class MovieSeeder extends Seeder
             'Description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
             'release_date' => "2021-04-12",
             'thumbnail_source' => "encanto.jpeg",
-            'background_source' => "",
+            'background_source' => "banner_greatest.jpg",
             'director' => 'lorem',
         ]);
         
@@ -57,7 +57,7 @@ class MovieSeeder extends Seeder
             'Description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
             'release_date' => "2021-04-12",
             'thumbnail_source' => "blackpanther.jpeg",
-            'background_source' => "",
+            'background_source' => "banner_greatest.jpg",
             'director' => 'lorem',
         ]);
     }
