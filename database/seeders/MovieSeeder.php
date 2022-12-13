@@ -20,8 +20,8 @@ class MovieSeeder extends Seeder
             'title' => "The Greatest Showmen",
             'Description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
             'release_date' => "2021-04-12",
-            'thumbnail_source' => "greatest.png",
-            'background_source' => "banner_greatest.jpg",
+            'thumbnail_source' => "thumbnail_greatest.jpeg",
+            'background_source' => "background_greatest.jpeg",
             'director' => 'lorem',
         ]);
 
@@ -29,8 +29,8 @@ class MovieSeeder extends Seeder
             'title' => "Minion",
             'Description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
             'release_date' => "2021-04-12",
-            'thumbnail_source' => "minion.jpeg",
-            'background_source' => "banner_greatest.jpg",
+            'thumbnail_source' => "thumbnail_minion.jpeg",
+            'background_source' => "background_minion.jpeg",
             'director' => 'lorem',
         ]);
 
@@ -38,8 +38,8 @@ class MovieSeeder extends Seeder
             'title' => "Spiderman",
             'Description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
             'release_date' => "2021-04-12",
-            'thumbnail_source' => "spiderman.jpg",
-            'background_source' => "banner_spiderman.webp",
+            'thumbnail_source' => "thumbnail_spiderman.jpg",
+            'background_source' => "background_spiderman.webp",
             'director' => "lorem",
         ]);
 
@@ -47,8 +47,8 @@ class MovieSeeder extends Seeder
             'title' => "Encanto",
             'Description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
             'release_date' => "2021-04-12",
-            'thumbnail_source' => "encanto.jpeg",
-            'background_source' => "banner_greatest.jpg",
+            'thumbnail_source' => "thumbnail_encanto.jpeg",
+            'background_source' => "background_encanto.jpeg",
             'director' => 'lorem',
         ]);
         
@@ -56,8 +56,17 @@ class MovieSeeder extends Seeder
             'title' => "Blackpanther",
             'Description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
             'release_date' => "2021-04-12",
-            'thumbnail_source' => "blackpanther.jpeg",
-            'background_source' => "banner_greatest.jpg",
+            'thumbnail_source' => "thumbnail_blackpanther.jpeg",
+            'background_source' => "background_blackpanther.jpeg",
+            'director' => 'lorem',
+        ]);
+
+        DB::table('movies')->insert([
+            'title' => "Matrix",
+            'Description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            'release_date' => "2021-04-12",
+            'thumbnail_source' => "thumbnail_matrix.jpeg",
+            'background_source' => "background_matrix.jpg",
             'director' => 'lorem',
         ]);
     }

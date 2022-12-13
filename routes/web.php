@@ -19,3 +19,4 @@ Route::get('/movies', [MovieController::class, 'index'])->name('home');
 Route::get('/movies/create', [MovieController::class, 'create']);
 Route::post('/movies', [MovieController::class, 'store'])->name("add book");
 Route::get('/movies/{id}', [MovieController::class, 'show'])->name("show book");
+Route::get('/movies/search', [MovieController::class, 'indexSearch'])->name("search");
