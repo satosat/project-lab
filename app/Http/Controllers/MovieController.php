@@ -20,7 +20,18 @@ class MovieController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $movies = Movie::simplePaginate(5);
+        $moviesShow = Movie::all();
+        return view('movies.index', [
+            'genres' => GenreType::all(),
+            'movies' => $movies,
+        ]);
+    }
+
+    public function indexSearch(Request $request)
+    {
+        $movie = Movie::where('title', 'LIKE', "%$request->search%");
+        return view('movies.index')->with('movies', $movie);
     }
 
     /**
@@ -102,7 +113,7 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Movie $id)
     {
         // return view('movies.show')
     }

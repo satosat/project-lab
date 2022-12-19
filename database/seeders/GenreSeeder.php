@@ -7,6 +7,7 @@ use App\Models\GenreType;
 use App\Models\Movie;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class GenreSeeder extends Seeder
 {

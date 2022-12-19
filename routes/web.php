@@ -6,13 +6,9 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
+Route::get('/profile', function () {
+    return view('user.profile');
 });
-
-// Route::get('/movies/{id}', function ($id) {
-//     return view('movieDetail');
-// });
 
 // Register
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
