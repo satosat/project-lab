@@ -9,6 +9,16 @@ class Actor extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'biography',
+        'popularity',
+        'gender',
+        'dob',
+        'birthplace',
+        'image_source'
+    ];
+
     /**
      * Get associated characters
      */

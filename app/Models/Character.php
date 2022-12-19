@@ -11,6 +11,12 @@ class Character extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'actor_id',
+        'movie_id',
+        'name',
+    ];
+
     /**
      * Get character's movie
      */

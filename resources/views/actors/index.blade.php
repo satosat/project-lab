@@ -17,7 +17,7 @@
 
                 {{-- Admin only --}}
                 <button class="btn btn-danger">
-                    <a href="{{ route('add actor') }}" class="text-white text-decoration-none">
+                    <a href="{{ route('actors.create') }}" class="text-white text-decoration-none">
                         Add Actor
                     </a>
                 </button>
@@ -30,8 +30,8 @@
                     <img src="{{ url('images/encanto.jpeg') }}" class="card-img-top">
                     <div class="card-body">
                         <h5 class="text-white card-title">{{ $actor->name }}</h5>
-                        <p class="text-white card-text">their movie</p>
-                        <a href="{{ route('show actor', ['id' => $actor->id]) }}"
+                        <p class="text-white card-text">{{ $actor->characters[0]->movie->title }}</p>
+                        <a href="{{ route('actors.show', ['id' => $actor->id]) }}"
                             class="text-white text-decoration-none btn btn-primary w-100">
                             Detail
                         </a>
