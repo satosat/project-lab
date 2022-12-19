@@ -5,6 +5,11 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/profile', function(){
+    return view('user.profile');
+});
+
+
 // Register
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('new user');

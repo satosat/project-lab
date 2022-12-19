@@ -17,15 +17,16 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $movies = Movie::paginate(5);
+        $movies = Movie::simplePaginate(5);
+        $moviesShow = Movie::all();
         return view('movies.index', [
-            'movies' => Movie::all(),
-            'genres' => GenreType::all()
-        ])->with('movies', $movies);
+            'genres' => GenreType::all(),
+            'movies' => $movies,
+        ]);
     }
 
     public function indexSearch(Request $request){
-        $movie = Movie::where('title', 'LIKE', "%$request->search%")->simplePaginate(5);
+        $movie = Movie::where('title', 'LIKE', "%$request->search%");
         return view('movies.index')->with('movies', $movie);
     }
 

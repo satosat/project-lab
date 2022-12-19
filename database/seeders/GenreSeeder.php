@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class GenreSeeder extends Seeder
 {
@@ -14,5 +15,9 @@ class GenreSeeder extends Seeder
      */
     public function run()
     {
+       DB::table('genres')->insert([
+           'movie_id' => 1,
+           'genre_types' => 1,
+       ]);
     }
 }

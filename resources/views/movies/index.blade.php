@@ -131,10 +131,9 @@
                 </div>
             @endforeach
 
-            <div class="m-5">
-               {{$movies->withQueryString()->links()}}
+            <div class="m-2 d-flex justify-content-center page-item disabled">
+               {{$movies->links()}}
             </div>
-
         </div>
 
         {{-- Show + search --}}
@@ -156,7 +155,7 @@
                     <div class="form-outline btn-secondary d-flex">
                         <input type="search" id="form1" class="form-control bg-dark text-white mx-3"
                             placeholder="Search movie..." />
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <button type="search" class="btn btn-primary">Search</button>
                     </div>
                 </form>
             </div>
@@ -196,23 +195,7 @@
         <div class="row px-5">
             @foreach ($movies as $movie)
                 <div class="card bg-dark text-white border-0 m-3" style="width: 230px">
-                    <img src={{ 'images/' . $movie->thumbnail_source }} alt="" class="card-img-top mt-2"
-                        style="width:100%; height:300px">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <h5>{{ $movie->title }}</h5>
-                        </div>
-                        <div class="card-text">{{ date('Y', strtotime($movie->release_date)) }}</div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-
-        {{-- Movie Search Login --}}
-        <div class="row px-5">
-            @foreach ($movies as $movie)
-                <div class="card bg-dark text-white border m-3" style="width: 230px">
-                    <img src={{ 'images/' . $movie->thumbnail_source }} alt="" class="card-img-top mt-2"
+                    <img src={{ 'images/'.$movie->thumbnail_source }} alt="" class="card-img-top mt-2"
                         style="width:100%; height:300px">
                     <div class="card-body">
                         <div class="card-title">
@@ -220,6 +203,7 @@
                         </div>
                         <div class="card-text d-flex justify-content-between">
                             <div class="year">{{ $movie->release_date }}</div>
+                            {{-- Movie Search Login --}}
                             <div class="add">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                     fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
