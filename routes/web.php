@@ -26,6 +26,7 @@ Route::post('/movies', [MovieController::class, 'store'])->name("movies.store");
 Route::get('/movies/{id}/edit', [MovieController::class, 'edit'])->name('edit movie');
 Route::post('/movies', [MovieController::class, 'store'])->name("add movie");
 Route::get('/movies/{id}', [MovieController::class, 'show'])->name("show movie");
+Route::get('/movies/search', [MovieController::class, 'indexSearch'])->name("search");
 
 // Actors
 Route::get('/actors', [ActorController::class, 'index'])->name('actors');

@@ -115,7 +115,10 @@ class MovieController extends Controller
      */
     public function show(Movie $id)
     {
-        // return view('movies.show')
+        return view('movies.show', [
+            'movie' => $id,
+            'movies' => Movie::all()
+        ]);
     }
 
     /**
