@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Actor;
+use App\Models\Character;
+use App\Models\Genre;
 use App\Models\GenreType;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
@@ -25,7 +28,8 @@ class MovieController extends Controller
         ]);
     }
 
-    public function indexSearch(Request $request){
+    public function indexSearch(Request $request)
+    {
         $movie = Movie::where('title', 'LIKE', "%$request->search%");
         return view('movies.index')->with('movies', $movie);
     }
@@ -38,8 +42,8 @@ class MovieController extends Controller
     public function create()
     {
         return view('movies.create', [
-            'actors' => Actor::all(),
-            'genres' => GenreType::all(),
+            'actors' => Actor::all()->sortBy('name'),
+            'genres' => GenreType::all()->sortBy('genre'),
         ]);
     }
 
@@ -51,7 +55,56 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'max:255'],
+            'director' => ['required', 'max:255'],
+            'thumbnail_file' => ['required'],
+            'background_file' => ['required'],
+            'release_date' => ['required'],
+            'genres' => ['required', 'exists:genre_types,id'],
+            'actors.*.id' => ['required', 'exists:actors,id',],
+            'characters.*.name' => ['required'],
+        ]);
+
+        $time = time();
+
+        $thumbnail_file = $request->file('thumbnail_file');
+        $thumbnail_filename = $time . "." . $thumbnail_file->getClientOriginalExtension();
+
+        $background_file = $request->file('background_file');
+        $background_filename = $time . "." . $background_file->getClientOriginalExtension();
+
+        Storage::putFileAs("/public/images/thumbnail", $thumbnail_file, $thumbnail_filename);
+        Storage::putFileAs("/public/images/background", $background_file, $background_filename);
+
+        DB::transaction(function () use ($request, $thumbnail_filename, $background_filename) {
+            $movie = Movie::create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'release_date' => $request->release_date,
+                'director' => $request->director,
+                'thumbnail_source' => $thumbnail_filename,
+                'background_source' => $background_filename,
+            ]);
+
+            foreach ($request->genres as $_ => $id) {
+                Genre::create([
+                    'movie_id' => $movie->id,
+                    'genre_id' => $id,
+                ]);
+            }
+
+            for ($i = 0; $i < count($request->actors); $i++) {
+                Character::create([
+                    'movie_id' => $movie->id,
+                    'actor_id' => $request->actors[$i]['id'],
+                    'name' => $request->characters[$i]['name'],
+                ]);
+            }
+        });
+
+        return redirect(route('home'));
     }
 
     /**
@@ -62,10 +115,7 @@ class MovieController extends Controller
      */
     public function show(Movie $id)
     {
-        return view('movies.show', [
-            'movie' => $id,
-            'movies' => Movie::all()
-        ]);
+        // return view('movies.show')
     }
 
     /**
@@ -77,7 +127,7 @@ class MovieController extends Controller
     public function edit($id)
     {
         return view('movies.edit', [
-            'movie' => Movie::where($id)
+            'movie' => Movie::findOrFail($id),
         ]);
     }
 

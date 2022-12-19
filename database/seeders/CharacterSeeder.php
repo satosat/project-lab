@@ -2,14 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\Genre;
-use App\Models\GenreType;
+use App\Models\Actor;
+use App\Models\Character;
 use App\Models\Movie;
+use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class GenreSeeder extends Seeder
+class CharacterSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,15 +18,15 @@ class GenreSeeder extends Seeder
      */
     public function run()
     {
-        $genres = GenreType::all();
+        $faker = Factory::create();
+        $maxActorId = Actor::count();
 
         foreach (Movie::all() as $movie) {
-            $range = fake()->numberBetween(0, count($genres) - 1);
-
-            for ($i = 0; $i < $range; $i++) {
-                Genre::create([
+            for ($i = 0; $i < 5; $i++) {
+                Character::create([
+                    'actor_id' => $faker->numberBetween(1, $maxActorId),
                     'movie_id' => $movie->id,
-                    'genre_id' => $genres[fake()->numberBetween(0, count($genres) - 1)]->id,
+                    'name' => $faker->name(),
                 ]);
             }
         }

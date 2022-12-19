@@ -3,9 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Movie;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Faker\Factory;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class MovieSeeder extends Seeder
 {
@@ -51,7 +53,7 @@ class MovieSeeder extends Seeder
             'background_source' => "background_encanto.jpeg",
             'director' => 'lorem',
         ]);
-        
+
         DB::table('movies')->insert([
             'title' => "Blackpanther",
             'Description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
@@ -69,5 +71,17 @@ class MovieSeeder extends Seeder
             'background_source' => "background_matrix.jpeg",
             'director' => 'lorem',
         ]);
+        $faker = Factory::create();
+
+        for ($i = 0; $i < 10; $i++) {
+            Movie::create([
+                'title' => $faker->words(3, true),
+                'description' => $faker->text(50),
+                'release_date' => $faker->date('Y/m/d'),
+                'thumbnail_source' => 'null',
+                'background_source' => 'null',
+                'director' => $faker->name(),
+            ]);
+        }
     }
 }
