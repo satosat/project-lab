@@ -132,7 +132,7 @@
             @endforeach
 
             <div class="m-2 d-flex justify-content-center page-item disabled">
-               {{$movies->links()}}
+                {{ $movies->links() }}
             </div>
         </div>
 
@@ -173,29 +173,30 @@
         {{-- Sort by --}}
         <div class="d-flex text-white row mt-5 mx-5 align-middle">
             <p style="font-size: 150%">Sort By</p>
-            <div class="col-3"><button type="button" class="btn btn-secondary" style="width:100px">Lastest</button>
-            </div>
-            <div class="col-2"><button type="button" class="btn btn-secondary" style="width:100">A-Z</button></div>
-            <div class="col-2"><button type="button" class="btn btn-secondary" style="width:100px">Z-A</button></div>
+            <div class="col-2"><button type="button" class="btn btn-secondary w-100">Latest</button></div>
+            <div class="col-2"><button type="button" class="btn btn-secondary w-100">A-Z</button></div>
+            <div class="col-2"><button type="button" class="btn btn-secondary w-100">Z-A</button></div>
         </div>
 
         {{-- Admin only --}}
         <div class="mt-4 mb-3 mx-5 d-flex justify-content-end">
-            <button class="btn btn-danger">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-plus-lg" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
-                </svg>
-                Add Movie
-            </button>
+            <a href="{{ route('movies.create') }}">
+                <button class="btn btn-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                    </svg>
+                    Add Movie
+                </button>
+            </a>
         </div>
 
         {{-- Movie Search Guest --}}
         <div class="row px-5">
             @foreach ($movies as $movie)
                 <div class="card bg-dark text-white border-0 m-3" style="width: 230px">
-                    <img src={{ 'images/'.$movie->thumbnail_source }} alt="" class="card-img-top mt-2"
+                    <img src={{ 'images/' . $movie->thumbnail_source }} alt="" class="card-img-top mt-2"
                         style="width:100%; height:300px">
                     <div class="card-body">
                         <div class="card-title">

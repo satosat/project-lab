@@ -5,7 +5,7 @@
 @section('content')
     <div class="container bg-dark mt-2">
         <h2 class="text-white">Add Movie</h2>
-        <form method="POST" action="{{ route('add movie') }}" class="inline-block" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('movies.store') }}" class="inline-block" enctype="multipart/form-data">
             @csrf
 
             {{-- Title --}}
@@ -37,7 +37,7 @@
                 <table class="table table-borderless" id="characters">
                     <tr>
                         <td>
-                            <label class="form-label text-white">Character Name</label>
+                            <label class="form-label text-white">Actor Name</label>
                             <select name="actors[0][id]" class="form-select bg-dark text-white">
                                 <option selected="selected" value="" disabled>-- Open this select menu --</option>
                                 @foreach ($actors as $actor)
@@ -52,7 +52,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label class="form-label text-white">Character Name</label>
+                            <label class="form-label text-white">Actor Name</label>
                             <select name="actors[1][id]" class="form-select bg-dark text-white">
                                 <option selected="selected" value="" disabled>-- Open this select menu --</option>
                                 @foreach ($actors as $actor)
@@ -83,13 +83,11 @@
 
             {{-- Image URL --}}
             <label for="thumbnail_file" class="form-label text-white mt-3">Image File</label>
-            <input type="file" class="form-control bg-dark text-white" id="thumbnail_file" name="thumbnail_file"
-                value="{{ old('thumbnail_file') }}">
+            <input type="file" class="form-control bg-dark text-white" id="thumbnail_file" name="thumbnail_file">
 
             {{-- Background URL --}}
             <label for="background_file" class="form-label text-white mt-3">Bakground File</label>
-            <input type="file" class="form-control bg-dark text-white" id="background_file" name="background_file"
-                value="{{ old('background_file') }}">
+            <input type="file" class="form-control bg-dark text-white" id="background_file" name="background_file">
 
             <button class="btn btn-primary w-100 mt-5" type="submit"
                 style="background-color: #C43429; border-color: #C43429">
@@ -97,6 +95,7 @@
             </button>
 
         </form>
+
         @if ($errors->any())
             <div class="alert alert-danger mt-5">
                 <ul>
@@ -113,5 +112,28 @@
         integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
 
     {{-- add more characters --}}
-    <script type="text/javascript" src="{{ URL::asset('js/create-movie.js') }}"></script>
+    <script type="text/javascript">
+    let i = 2;
+
+    $("#add-character-btn").click(() => {
+        i++;
+        $("#characters").append(`<tr>
+                        <td>
+                            <label class="form-label text-white">Character Name</label>
+                            <select name="actors[${i}][id]" class="form-select bg-dark text-white">
+                                <option selected="selected" disabled>-- Open this select menu --</option>
+                                @foreach ($actors as $actor)
+                                    <option value="{{ $actor->id }}">{{ $actor->name }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <label class="form-label text-white">Character Name</label>
+                            <input type="text" name="characters[${i}][name]"
+                                class="form-control bg-dark text-white">
+                        </td>
+                    </tr>`);
+    });
+
+    </script>
 @endsection

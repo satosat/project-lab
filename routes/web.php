@@ -21,12 +21,14 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('authentic
 // Movies
 Route::redirect('/', '/movies');
 Route::get('/movies', [MovieController::class, 'index'])->name('home');
-Route::get('/movies/create', [MovieController::class, 'create'])->name('create new movie');
+Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
 Route::post('/movies', [MovieController::class, 'store'])->name("movies.store");
-Route::get('/movies/{id}/edit', [MovieController::class, 'edit'])->name('edit movie');
-Route::post('/movies', [MovieController::class, 'store'])->name("add movie");
-Route::get('/movies/{id}', [MovieController::class, 'show'])->name("show movie");
+Route::get('/movies/{id}/edit', [MovieController::class, 'edit'])->name('movies.edit');
+ROute::put('/movies/{id}', [MovieController::class, 'update'])->name('movies.update');
+Route::post('/movies', [MovieController::class, 'store'])->name("movies.store");
+Route::get('/movies/{id}', [MovieController::class, 'show'])->name("movies.show");
 Route::get('/movies/search', [MovieController::class, 'indexSearch'])->name("search");
+Route::delete('/movies/{id}', [MovieController::class, 'destroy'])->name('movies.destroy');
 
 // Actors
 Route::get('/actors', [ActorController::class, 'index'])->name('actors');
