@@ -5,7 +5,7 @@
 @section('content')
     <div class="px-5 d-flex gap-3">
         <div>
-            <img src="{{ url('images/encanto.jpeg') }}" style="height: 30rem">
+            <img src="{{ url('images/thumbnail_encanto.jpeg') }}" style="height: 30rem">
 
             {{-- Caption --}}
             <div class="mt-3">
@@ -18,6 +18,10 @@
                 <h5 class="text-white text-muted">{{ $actor->dob }}</h5>
                 <h5 class="text-white">Place of Birth</h5>
                 <h5 class="text-white text-muted">{{ $actor->birthplace }}</h5>
+                <a href="{{ route('actors.edit', ['id' => $actor->id]) }}">
+                    <button class="btn btn-secondary w-100 mt-3">Edit</button>
+                </a>
+                <form action=""></form>
             </div>
         </div>
         <div>
@@ -28,7 +32,7 @@
             <div class="d-flex row justify-content-start gap-5 mt-3" style="margin-left: 2.25px">
                 @foreach ($actor->characters as $character)
                     <div class="card col-4 p-0 bg-dark" style="width: 12rem; border-color: white;">
-                        <img src="{{ url('images/encanto.jpeg') }}" class="card-img-top">
+                        <img src="{{ url('images/thumbnail_encanto.jpeg') }}" class="card-img-top">
                         <div class="card-body">
                             <h5 class="text-white card-title">{{ $character->name }}</h5>
                             <p class="text-white card-text">{{ $character->movie->title }}</p>

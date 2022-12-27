@@ -35,3 +35,6 @@ Route::get('/actors', [ActorController::class, 'index'])->name('actors');
 Route::get('/actors/create', [ActorController::class, 'create'])->name('actors.create');
 Route::post('/actors', [ActorController::class, 'store'])->name('actors.store');
 Route::get('/actors/{id}', [ActorController::class, 'show'])->name('actors.show');
+Route::get('/actors/{id}/edit', [ActorController::class, 'edit'])->name("actors.edit");
+Route::put('/actors/{id}', [ActorController::class, 'update'])->name('actors.update');
+Route::delete('/actors/{id}', [ActorController::class, 'destroy'])->name('actors.destroy');
