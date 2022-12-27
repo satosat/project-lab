@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('name');
 
             // foreign key to actors and movies table
-            $table->foreign('actor_id')->references('id')->on('actors');
-            $table->foreign('movie_id')->references('id')->on('movies');
+            $table->foreign('actor_id')->references('id')->on('actors')->onUpdate("cascade")->onDelete("cascade");
+            $table->foreign('movie_id')->references('id')->on('movies')->onUpdate("cascade")->onDelete("cascade");
         });
     }
 

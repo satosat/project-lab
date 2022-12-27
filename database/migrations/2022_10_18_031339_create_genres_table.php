@@ -19,8 +19,8 @@ return new class extends Migration
             $table->unsignedBigInteger('genre_id');
 
             // foreign key to movies table
-            $table->foreign('movie_id')->references('id')->on('movies');
-            $table->foreign('genre_id')->references('id')->on('genre_types');
+            $table->foreign('movie_id')->references('id')->on('movies')->onUpdate("cascade")->onDelete("cascade");
+            $table->foreign('genre_id')->references('id')->on('genre_types')->onUpdate("cascade")->onDelete("cascade");
         });
     }
 

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('status');
 
             // foreign key to actors and movies table
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('movie_id')->references('id')->on('movies');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate("cascade")->onDelete("cascade");
+            $table->foreign('movie_id')->references('id')->on('movies')->onUpdate("cascade")->onDelete("cascade");
         });
     }
 
