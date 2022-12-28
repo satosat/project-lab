@@ -1,6 +1,6 @@
 @extends('templates.master')
 
-@section('title', '{{ $actor->name }}')
+@section('title', 'Edit ' . $actor->name)
 
 @section('content')
     <div class="container bg-dark mt-2">
