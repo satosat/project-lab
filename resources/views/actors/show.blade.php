@@ -1,6 +1,6 @@
 @extends('templates.master')
 
-@section('title', 'actor')
+@section('title', $actor->name)
 
 @section('content')
     <div class="px-5 d-flex gap-3">
@@ -18,10 +18,22 @@
                 <h5 class="text-white text-muted">{{ $actor->dob }}</h5>
                 <h5 class="text-white">Place of Birth</h5>
                 <h5 class="text-white text-muted">{{ $actor->birthplace }}</h5>
-                <a href="{{ route('actors.edit', ['id' => $actor->id]) }}">
-                    <button class="btn btn-secondary w-100 mt-3">Edit</button>
-                </a>
-                <form action=""></form>
+
+                {{-- Admin only --}}
+                @if (Gate::allows('admin', Auth::user()))
+                    <a href="{{ route('actors.edit', ['id' => $actor->id]) }}">
+                        <button class="btn btn-secondary w-100 mt-3">Edit</button>
+                    </a>
+                    <div class="mt-3">
+                        <form action="{{ route('actors.destroy', ['id' => $actor->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <input type="hidden" name="id" value="{{ $actor->id }}">
+                            <button type="submit" class="btn btn-danger w-100">Delete</button>
+                        </form>
+                    </div>
+                @endif
             </div>
         </div>
         <div>

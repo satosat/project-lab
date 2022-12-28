@@ -10,6 +10,11 @@ use Illuminate\Validation\Rule;
 
 class ActorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'is.admin'], ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -57,7 +62,7 @@ class ActorController extends Controller
             'dob' => ['required', 'date'],
             'birthplace' => ['required'],
             'image_file' => ['required'],
-            'popularity' => ['required', 'numeric'],
+            'popularity' => ['required', 'numeric', 'max:10'],
         ]);
 
         $image_filename = $this->saveThumbnail($request->file('image_file'));
@@ -122,7 +127,7 @@ class ActorController extends Controller
             'dob' => ['required', 'date'],
             'birthplace' => ['required'],
             'image_file' => ['required'],
-            'popularity' => ['required', 'numeric'],
+            'popularity' => ['required', 'numeric', 'max:10'],
         ]);
 
         $image_filename = $this->updateThumbnail($request->file('image_file'), Actor::findOrFail($id)->image_source);

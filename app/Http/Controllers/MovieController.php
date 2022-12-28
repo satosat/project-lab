@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'is.admin'], ['except' => ['index', 'show', 'indexSearch']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -147,9 +152,8 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request);
         if ($request->id !== $id) {
-            return abort(400, "Bad Request");
+            abort(400, "Bad Request");
         }
 
         $request->validate([
