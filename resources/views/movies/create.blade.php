@@ -107,33 +107,10 @@
         @endif
     </div>
 
-    {{-- jQuery --}}
+    {{-- jQuery for dynamic form --}}
     <script src="https://code.jquery.com/jquery-3.6.2.min.js"
         integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
 
     {{-- add more characters --}}
-    <script type="text/javascript">
-    let i = 2;
-
-    $("#add-character-btn").click(() => {
-        i++;
-        $("#characters").append(`<tr>
-                        <td>
-                            <label class="form-label text-white">Character Name</label>
-                            <select name="actors[${i}][id]" class="form-select bg-dark text-white">
-                                <option selected="selected" disabled>-- Open this select menu --</option>
-                                @foreach ($actors as $actor)
-                                    <option value="{{ $actor->id }}">{{ $actor->name }}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td>
-                            <label class="form-label text-white">Character Name</label>
-                            <input type="text" name="characters[${i}][name]"
-                                class="form-control bg-dark text-white">
-                        </td>
-                    </tr>`);
-    });
-
-    </script>
+    <script type="text/javascript" src="{{ URL::asset('js/create-movie.js') }}"></script>
 @endsection

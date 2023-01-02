@@ -5,7 +5,8 @@
 @section('content')
     <div class="container bg-dark mt-2">
         <h2 class="text-white">Add Movie</h2>
-        <form method="POST" action="{{ route('movies.update', ['id' => $movie->id]) }}" class="inline-block" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('movies.update', ['id' => $movie->id]) }}" class="inline-block"
+            enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -27,8 +28,9 @@
             <div>
                 @foreach ($genre_types as $genre_type)
                     <div class="form-check-inline">
-                        @if(in_array($genre_type->genre, $genres))
-                            <input class="form-check-input" type="checkbox" value="{{ $genre_type->id }}" name="genres[]" checked>
+                        @if (in_array($genre_type->genre, $genres))
+                            <input class="form-check-input" type="checkbox" value="{{ $genre_type->id }}" name="genres[]"
+                                checked>
                         @else
                             <input class="form-check-input" type="checkbox" value="{{ $genre_type->id }}" name="genres[]">
                         @endif
@@ -102,32 +104,10 @@
         @endif
     </div>
 
-    {{-- jQuery --}}
+    {{-- jQuery for dyanmic form --}}
     <script src="https://code.jquery.com/jquery-3.6.2.min.js"
         integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
-        let i = document.querySelectorAll(".character-field").length - 1;
-
-        $("#add-character-btn").click(() => {
-            i++;
-            $("#characters").append(`<tr>
-                            <td>
-                                <label class="form-label text-white">Character Name</label>
-                                <select name="actors[${i}][id]" class="form-select bg-dark text-white">
-                                    <option selected="selected" disabled>-- Open this select menu --</option>
-                                    @foreach ($actors as $actor)
-                                        <option value="{{ $actor->id }}">{{ $actor->name }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <label class="form-label text-white">Character Name</label>
-                                <input type="text" name="characters[${i}][name]"
-                                    class="form-control bg-dark text-white">
-                            </td>
-                        </tr>`);
-        });
-
-    </script>
+    {{-- add more characters --}}
+    <script type="text/javascript" src="{{ URL::asset('js/edit-movie.js') }}"></script>
 @endsection
