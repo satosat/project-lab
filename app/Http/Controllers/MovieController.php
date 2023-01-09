@@ -8,11 +8,17 @@ use App\Models\Genre;
 use App\Models\GenreType;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'is.admin'], ['except' => ['index', 'show', 'indexSearch']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -72,16 +78,10 @@ class MovieController extends Controller
             'characters.*.name' => ['required'],
         ]);
 
-        $time = time();
-
         $thumbnail_file = $request->file('thumbnail_file');
-        $thumbnail_filename = $time . "." . $thumbnail_file->getClientOriginalExtension();
-
         $background_file = $request->file('background_file');
-        $background_filename = $time . "." . $background_file->getClientOriginalExtension();
 
-        Storage::putFileAs("/public/images/thumbnail", $thumbnail_file, $thumbnail_filename);
-        Storage::putFileAs("/public/images/background", $background_file, $background_filename);
+        [$thumbnail_filename, $background_filename] = $this->saveFiles($thumbnail_file, $background_file);
 
         DB::transaction(function () use ($request, $thumbnail_filename, $background_filename) {
             $movie = Movie::create([
@@ -135,8 +135,19 @@ class MovieController extends Controller
      */
     public function edit($id)
     {
+        $movie = Movie::findOrFail($id);
+
+        $genres = [];
+
+        foreach ($movie->genres as $genre) {
+            array_push($genres, $genre->genre);
+        }
+
         return view('movies.edit', [
             'movie' => Movie::findOrFail($id),
+            'genre_types' => GenreType::all()->sortBy('genre'),
+            'actors' => Actor::all()->sortBy('name'),
+            'genres' => $genres,
         ]);
     }
 
@@ -149,7 +160,61 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->id !== $id) {
+            abort(400, "Bad Request");
+        }
+
+        $request->validate([
+            'id' => ['required', 'exists:movies,id'],
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'max:255'],
+            'director' => ['required', 'max:255'],
+            'thumbnail_file' => ['required'],
+            'background_file' => ['required'],
+            'release_date' => ['required'],
+            'genres' => ['required', 'exists:genre_types,id'],
+            'actors.*.id' => ['required', 'exists:actors,id',],
+            'characters.*.name' => ['required'],
+        ]);
+
+        $thumbnail_file = $request->file('thumbnail_file');
+        $background_file = $request->file('background_file');
+
+        [$thumbnail_filename, $background_filename] = $this->replaceFiles($id, $thumbnail_file, $background_file);
+
+        DB::transaction(function () use ($request, $thumbnail_filename, $background_filename) {
+            Movie::findOrFail($request->id)->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'director' => $request->director,
+                'release_date' => $request->release_date,
+                'thumbnail_source' => $thumbnail_filename,
+                'background_source' => $background_filename,
+            ]);
+
+            Genre::where('movie_id', $request->id)->delete();
+
+            foreach ($request->genres as $_ => $id) {
+                Genre::create([
+                    'movie_id' => $request->id,
+                    'genre_id' => $id,
+                ]);
+            }
+
+            Character::where('movie_id', $request->id)->delete();
+
+            for ($i = 0; $i < count($request->actors); $i++) {
+                Character::create([
+                    'movie_id' => $request->id,
+                    'actor_id' => $request->actors[$i]['id'],
+                    'name' => $request->characters[$i]['name'],
+                ]);
+            }
+        });
+
+
+
+        return redirect(route('movies.show', ['id' => $id]));
     }
 
     /**
@@ -160,6 +225,38 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Movie::destroy($id);
+
+        return redirect(route('home'));
+    }
+
+    /**
+     * Save thumbnail and background file
+     */
+    private function saveFiles($thumbnail_file, $background_file)
+    {
+        $uuid = Str::orderedUuid();
+
+        $thumbnail_filename = $uuid . "." . $thumbnail_file->getClientOriginalExtension();
+        $background_filename = $uuid . "." . $background_file->getClientOriginalExtension();
+
+        Storage::putFileAs("/public/images/thumbnail", $thumbnail_file, $thumbnail_filename);
+        Storage::putFileAs("/public/images/background", $background_file, $background_filename);
+
+        return [$thumbnail_filename, $background_filename];
+    }
+
+    /**
+     * Delete old thumbnail & background and replace with new ones
+     */
+    private function replaceFiles($id, $thumbnail_file, $background_file)
+    {
+        $movie = Movie::findOrFail($id);
+        Storage::delete([
+            "public/images/thumbnail/" . $movie->thumbnail_source,
+            "public/images/background/" . $movie->background_source
+        ]);
+
+        return $this->saveFiles($thumbnail_file, $background_file);
     }
 }

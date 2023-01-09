@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    let i = 1;
+    // get amount of characters
+    let i = document.querySelectorAll(".character-field").length - 1;
 
     const options = await fetchOptions();
 

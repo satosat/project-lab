@@ -10,4 +10,9 @@ class GenreType extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    public function movies()
+    {
+        return $this->belongsToMany(Movie::class, 'genres', 'genre_id', 'movie_id');
+    }
 }
