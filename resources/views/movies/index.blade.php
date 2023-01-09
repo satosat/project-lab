@@ -209,12 +209,13 @@
                             <div class="card-text d-flex justify-content-between">
                                 <div class="year">{{ $movie->release_date }}</div>
                                 {{-- Movie Search Login --}}
-                                <div class="add">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                        fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path
-                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                    </svg>
+                                <div class="add" style="height: 25px; width: 25px">
+                                    <form action="{{ route('watchlists.store', ['id' => $movie->id]) }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" id="{{ $movie->id }}">
+                                        <button type="submit"
+                                            style="border: none; background: none; color:white">+</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

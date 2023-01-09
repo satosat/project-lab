@@ -50,4 +50,12 @@ class User extends Authenticatable
     {
         return $this->is_admin;
     }
+
+    /**
+     * Get user's watchlists
+     */
+    public function watchlists()
+    {
+        return $this->hasMany(Watchlist::class);
+    }
 }

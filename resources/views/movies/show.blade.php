@@ -5,7 +5,8 @@
 @section('content')
 
     <div class="banner bg-dark text-white">
-        <img src={{ url("images/".$movie->background_source) }} alt="" style="height: 500px; width: 100%; opacity: 0.5">
+        <img src={{ url('images/' . $movie->background_source) }} alt=""
+            style="height: 500px; width: 100%; opacity: 0.5">
 
         <div class="content d-flex justify-content-evenly mx-5 mt-5">
             <div class="col">
@@ -21,7 +22,7 @@
                         {{-- @endforeach --}}
                     </div>
                 </div>
- 
+
                 <div class="row m-4">
                     <div class="col-sm-2">Release Year</div>
                     <div class="col">{{ $movie->release_date }}</div>
@@ -37,25 +38,27 @@
                     <div class="col">Name Director</div>
                 </div>
 
-                <div class="row m-4">
-                    <div class="col">
-                        <a href="{{ route('movies.edit', ['id' => $movie->id]) }}">
-                            <button class="btn btn-secondary w-100">
-                                Edit
-                            </button>
-                        </a>
-                    </div>
-                    <div class="col-sm-2">
-                        <form action="{{ route('movies.destroy', ['id' => $movie->id]) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
+                @if (Gate::allows('admin', Auth::user()))
+                    <div class="row m-4">
+                        <div class="col">
+                            <a href="{{ route('movies.edit', ['id' => $movie->id]) }}">
+                                <button class="btn btn-secondary w-100">
+                                    Edit
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-sm-2">
+                            <form action="{{ route('movies.destroy', ['id' => $movie->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
 
-                            <input type="hidden" name="id" value="{{ $movie->id }}">
+                                <input type="hidden" name="id" value="{{ $movie->id }}">
 
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>
@@ -68,15 +71,15 @@
 
         <div class="row">
             @foreach ($actors as $actor)
-            <div class="col-1 mx-5">
-                <div class="card bg-dark text-white border-0" style="width: 200px; ">
-                    <img src="/images/encanto.jpeg" alt="" class="card-img-top">
-                    <div class="card-body bg-danger">
-                        <div class="actor-name card-title">{{ $actor->name }}</div>
-                        <div class="actor-character d-flex justify-content-between">character name</div>
+                <div class="col-1 mx-5">
+                    <div class="card bg-dark text-white border-0" style="width: 200px; ">
+                        <img src="/images/encanto.jpeg" alt="" class="card-img-top">
+                        <div class="card-body bg-danger">
+                            <div class="actor-name card-title">{{ $actor->name }}</div>
+                            <div class="actor-character d-flex justify-content-between">character name</div>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endforeach
 
             {{-- More --}}

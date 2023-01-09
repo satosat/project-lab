@@ -2,30 +2,58 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
+use App\Models\User;
+use App\Models\Watchlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class WatchlistController extends Controller
 {
-     /**
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        
-        return view('user.watchlist');
-    }
+        // check for filter query
+        if ($request->status && $request->status !== "All") {
+            $request->validate([
+                'status' => Rule::in(['Planned', 'Watching', 'Finished'])
+            ]);
 
+            return view('user.watchlist', [
+                'watchlists' => Watchlist::where([
+                    ['user_id', Auth::id()],
+                    ['status', $request->status]
+                ])->paginate(4),
+                'filter' => $request->status,
+            ]);
+        }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        // check for title search
+        if ($request->title !== "") {
+            $movie_ids = Movie::where('title', 'LIKE', "%$request->title%")->get(['id']);
+
+            return view('user.watchlist', [
+                'watchlists' => Watchlist::where('user_id', Auth::id())
+                    ->whereIn('movie_id', $movie_ids)
+                    ->paginate(4),
+                'filter' => 'All',
+            ]);
+        }
+
+        return view('user.watchlist', [
+            'watchlists' => Watchlist::where('user_id', Auth::id())->paginate(4),
+            'filter' => 'All',
+        ]);
     }
 
     /**
@@ -34,31 +62,19 @@ class WatchlistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
-    }
+        Watchlist::firstOrCreate(
+            [
+                'user_id' => Auth::id(),
+                'movie_id' => $id,
+            ],
+            [
+                'status' => 'Planned'
+            ]
+        );
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return redirect(route('watchlists.search'));
     }
 
     /**
@@ -70,17 +86,29 @@ class WatchlistController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-    }
+        $request->validate([
+            'id' => ['required', 'exists:watchlists,id'],
+            'status' => [
+                'required',
+                Rule::in([
+                    'Planned',
+                    'Watching',
+                    'Finished',
+                    'Remove'
+                ])
+            ],
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        switch ($request->status) {
+            case 'Remove':
+                Watchlist::destroy($id);
+                break;
+
+            default:
+                Watchlist::find($id)->update(['status' => $request->status]);
+                break;
+        }
+
+        return redirect(route('watchlists.search'));
     }
 }

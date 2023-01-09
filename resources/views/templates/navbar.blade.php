@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark bg-dark navbar-expand py-3">
     <div class="d-flex justify-content-between px-3 w-100">
         <div class="d-flex">
-            <a class="navbar-brand">MovieList</a>
+            <a href="{{ route('home') }}" class="navbar-brand">MovieList</a>
         </div>
         <div class="">
             <ul class="navbar-nav gap-3">
