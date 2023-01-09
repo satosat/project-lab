@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             CharacterSeeder::class,
             GenreTypeSeeder::class,
             GenreSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

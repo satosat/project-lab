@@ -7,6 +7,7 @@ use App\Models\Character;
 use App\Models\Genre;
 use App\Models\GenreType;
 use App\Models\Movie;
+use App\Models\Watchlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -27,18 +28,53 @@ class MovieController extends Controller
     public function index(Request $request)
     {
         $movies = null;
+        $sorted = null;
 
         if ($request->get('search')) {
             $mov = $request->get('search');
             $movies = Movie::where('title', 'LIKE', "%$mov%")->paginate(5);
-        } else {
-            $movies = Movie::paginate(5);
+        } else if ($request->genre) {
+            $sorted = Movie::whereIn('id', Genre::where('genre_id', $request->genre)->get('movie_id'))->paginate(5, ['*'], 'sorted');
+        } else if ($request->sort) {
+            switch ($request->sort) {
+                case 'Latest':
+                    $sorted = DB::table('movies')->orderBy('release_date')->paginate(5, ['*'], 'sorted');
+                    break;
+                case 'Asc':
+                    $sorted = DB::table('movies')->orderBy('title')->paginate(5, ['*'], 'sorted');
+                    break;
+                case 'Desc':
+                    $sorted = DB::table('movies')->orderByDesc('title')->paginate(5, ['*'], 'sorted');
+                    break;
+                default:
+                    $sorted = Movie::paginate(5, ['*'], 'sorted');
+            }
+        }
+
+        if ($movies === null) {
+            $movies = Movie::paginate(5, ['*'], 'popular');
+        }
+        if ($sorted === null) {
+            $sorted = Movie::paginate(5, ['*'], 'sorted');
         }
 
         return view('movies.index', [
             'movies' => $movies,
+            'sorted' => $sorted,
             'genres' => GenreType::all(),
+            'carousel' => $this->getRandomMovie(),
         ]);
+    }
+
+    private function getRandomMovie()
+    {
+        $movie = Movie::all();
+
+        return [
+            $movie->random(),
+            $movie->random(),
+            $movie->random(),
+        ];
     }
 
     public function sortBy()

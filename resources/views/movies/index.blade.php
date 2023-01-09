@@ -16,90 +16,33 @@
         </div>
 
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/images/background_greatest.jpeg" alt="Matrix" class="d-block" style="width:100%; height:500px">
-                <div class="carousel-caption text-white mb-lg-5 text-right">
-                    <div class="row-sm-2 mb-3 d-flex">Action | 2021</div>
-                    <div class="row-sm-2 mb-3 d-flex">
-                        <h3>The Greatest Showman</h3>
-                    </div>
-                    <div class="row-sm-2 mb-lg-5 d-flex">
-                        <p>Description</p>
-                    </div>
+            @foreach ($carousel as $movie)
+                <div class="carousel-item {{ $loop->index === 0 ? 'active' : '' }}">
+                    <img src="{{ asset('/storage/images/background/' . $movie->background_source) }}" class="d-block"
+                        style="width:100%; height:500px">
+                    <div class="carousel-caption text-white mb-lg-5 text-right">
+                        <div class="row-sm-2 mb-3 d-flex">{{ $movie->genres[0]->genre }} |
+                            {{ date('Y', strtotime($movie->release_date)) }}
+                        </div>
+                        <div class="row-sm-2 mb-3 d-flex">
+                            <h3>{{ $movie->title }}</h3>
+                        </div>
+                        <div class="row-sm-2 mb-lg-5 d-flex">
+                            <p>{{ $movie->description }}</p>
+                        </div>
 
-                    <div class="row-sm-2 mb-lg-5 d-flex">
-                        <button class="btn btn-danger">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                <path
-                                    fill-rule="evenodd"d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
-                            </svg>
-                            Add To WatchLists
-                        </button>
+                        <div class="row-sm-2 mb-lg-5 d-flex">
+                            <form action="{{ route('watchlists.store', ['id' => $movie->id]) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">
+                                    + Add To WatchList
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="carousel-item active">
-                <img src="/images/background_spiderman.webp" alt="Matrix" class="d-block"
-                    style="width:100%; height:500px">
-                <div class="carousel-caption text-white mb-lg-5 text-right">
-                    <div class="row-sm-2 mb-3 d-flex">Action | 2021</div>
-                    <div class="row-sm-2 mb-3 d-flex">
-                        <h3>Spiderman : No Way Home</h3>
-                    </div>
-                    <div class="row-sm-2 mb-lg-5 d-flex">
-                        <p>To find out if his reality is a physical or mental construct</p>
-                    </div>
-                    <div class="row-sm-2 mb-lg-5 d-flex">
-                        <button class="btn btn-danger">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
-                            </svg>
-                            Add To WatchLists
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="carousel-item active">
-                <img src="/images/background_spiderman.webp" alt="Matrix" class="d-block"
-                    style="width:100%; height:500px">
-                <div class="carousel-caption text-white mb-lg-5 text-right">
-                    <div class="row-sm-2 mb-3 d-flex">Action | 2021</div>
-                    <div class="row-sm-2 mb-3 d-flex">
-                        <h3>Spiderman : No Way Home</h3>
-                    </div>
-                    <div class="row-sm-2 mb-lg-5 d-flex">
-                        <p>To find out if his reality is a physical or mental construct</p>
-                    </div>
-                    <div class="row-sm-2 mb-lg-5 d-flex">
-                        <button class="btn btn-danger">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
-                            </svg>
-                            Add To WatchLists
-                        </button>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
-
-        <button class="carousel-control-prev text-dark" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-
-        <button class="carousel-control-next text-dark" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
 
     <div class="content">
@@ -115,12 +58,12 @@
         </div>
 
         {{-- Popular Movie --}}
-        <div class="row px-5">
+        <div class="d-flex row justify-content-evenly gap-0 mt-3 px-5" style="margin-left: 2.25px">
             @foreach ($movies as $movie)
-                <div class="card bg-dark text-white border-0 m-3" style="width: 230px">
+                <div class="card bg-dark text-white border-0" style="width: 230px">
                     <a href={{ 'movies/' . $movie->id }} style="text-decoration:none;color:white">
-                        <img src={{ 'images/' . $movie->thumbnail_source }} alt="" class="card-img-top mt-2"
-                            style="width:100%; height:300px">
+                        <img src={{ asset('storage/images/thumbnail/' . $movie->thumbnail_source) }} alt=""
+                            class="card-img-top mt-2" style="width:100%; height:300px">
                         <div class="card-body">
                             <div class="card-title">
                                 <h5>{{ $movie->title }}</h5>
@@ -130,10 +73,10 @@
                     </a>
                 </div>
             @endforeach
+        </div>
 
-            <div class="m-2 d-flex justify-content-center page-item disabled">
-                {{ $movies->links() }}
-            </div>
+        <div class="mx-5">
+            {{ $movies->links() }}
         </div>
 
         {{-- Show + search --}}
@@ -165,18 +108,31 @@
         <div class="text-white row mx-5">
             @foreach ($genres as $genre)
                 <div class="col m-2">
-                    <button type="button" class="btn btn-secondary" style="width:150px;"
-                        onclick="">{{ $genre->genre }}</button>
+                    <a href="{{ route('home', ['genre' => $genre->id]) }}">
+                        <button type="button" class="btn btn-secondary w-100">{{ $genre->genre }}</button>
+                    </a>
                 </div>
             @endforeach
         </div>
 
         {{-- Sort by --}}
-        <div class="text-white row mt-5 mx-5 align-middle">
-            <p style="font-size: 150%">Sort By</p>
-            <div class="col-1"><a class="btn btn-secondary" style="width:100px">Lastest</a></div>
-            <div class="col-1"><a class="btn btn-secondary" style="width:100px">A-Z</a></div>
-            <div class="col-1"><a class="btn btn-secondary" style="width:100px">Z-A</a></div>
+        <h6 class="text-white mx-5" style="font-size: 150%">Sort By</h6>
+        <div class="d-flex mt-1 mx-5 justify-items-start">
+            <div class="col m-2">
+                <a href="{{ route('home', ['sort' => 'Latest']) }}">
+                    <button type="button" class="btn btn-secondary w-50">Latest</button>
+                </a>
+            </div>
+            <div class="col m-2">
+                <a href="{{ route('home', ['sort' => 'Asc']) }}">
+                    <button type="button" class="btn btn-secondary w-50">A-Z</button>
+                </a>
+            </div>
+            <div class="col m-2">
+                <a href="{{ route('home', ['sort' => 'Desc']) }}">
+                    <button type="button" class="btn btn-secondary w-50">Z-A</button>
+                </a>
+            </div>
         </div>
 
         {{-- Admin only --}}
@@ -196,18 +152,19 @@
         @endif
 
         {{-- Movie Search Guest --}}
-        <div class="row px-5">
-            @foreach ($movies as $movie)
-                <div class="card bg-dark text-white border-0 m-3" style="width: 230px">
+        <div class="d-flex row justify-content-evenly gap-0 mt-3 px-5" style="margin-left: 2.25px">
+            @foreach ($sorted as $movie)
+                <div class="card bg-dark text-white border-0" style="width: 230px">
                     <a href={{ 'movies/' . $movie->id }} style="text-decoration:none;color:white">
-                        <img src={{ 'images/' . $movie->thumbnail_source }} alt="" class="card-img-top mt-2"
-                            style="width:100%; height:300px">
+                        <img src={{ asset('storage/images/thumbnail/' . $movie->thumbnail_source) }} alt=""
+                            class="card-img-top mt-2" style="width:100%; height:300px">
                         <div class="card-body">
                             <div class="card-title">
                                 <h5>{{ $movie->title }}</h5>
                             </div>
                             <div class="card-text d-flex justify-content-between">
                                 <div class="year">{{ $movie->release_date }}</div>
+
                                 {{-- Movie Search Login --}}
                                 <div class="add" style="height: 25px; width: 25px">
                                     <form action="{{ route('watchlists.store', ['id' => $movie->id]) }}" method="POST">
@@ -222,6 +179,10 @@
                     </a>
                 </div>
             @endforeach
+        </div>
+
+        <div class="mx-5">
+            {{ $sorted->links() }}
         </div>
     </div>
 

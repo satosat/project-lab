@@ -50,7 +50,8 @@
             @foreach ($watchlists as $watchlist)
                 <tr>
                     <td class="col-3">
-                        <img src="{{ url('images/' . $watchlist->movie->thumbnail_source) }}" style="height: 100px;">
+                        <img src="{{ asset('storage/images/thumbnail/' . $watchlist->movie->thumbnail_source) }}"
+                            style="height: 150px;">
                     </td>
 
                     <td class="align-middle col-3">{{ $watchlist->movie->title }}</td>

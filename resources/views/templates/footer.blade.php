@@ -8,10 +8,10 @@
             <p>MovieList a website that contains list of movies</p>
         </div>
         <div class="footer-socialMedia p-2">
-            <img src="{{ url('images/twitter.png') }}" width="30" height="30" class="m-2">
-            <img src="{{ url('images/ig.png') }}" width="30" height="30" class="m-2">
-            <img src="{{ url('images/fb.png') }}" width="30" height="30" class="m-2">
-            <img src="{{ url('images/youtube.png') }}" width="30" height="30" class="m-2">
+            <img src="{{ asset('storage/images/icon/twitter.png') }}" width="30" height="30" class="m-2">
+            <img src="{{ asset('storage/images/icon/ig.png') }}" width="30" height="30" class="m-2">
+            <img src="{{ asset('storage/images/icon/fb.png') }}" width="30" height="30" class="m-2">
+            <img src="{{ asset('storage/images/icon/youtube.png') }}" width="30" height="30" class="m-2">
         </div>
         <div class="footer-rule text-white p-2 d-flex justify-content-center" style="text-decoration: none">
             <p class="m-2">Privacy Policy</p>
