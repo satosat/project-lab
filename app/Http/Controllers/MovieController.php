@@ -24,18 +24,25 @@ class MovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $movies = null;
+
+        if($request->get('search')){
+            $mov = $request->get('search');
+            $movies = Movie::where('title', 'LIKE', "%$mov%")->get();
+        }else{
+            $movies = Movie::all();
+        }
+
         return view('movies.index', [
+            'movies'=>$movies,
             'genres' => GenreType::all(),
-            'movies' => Movie::simplePaginate(5),
         ]);
     }
 
-    public function indexSearch(Request $request)
-    {
-        $movie = Movie::where('title', 'LIKE', "%$request->search%");
-        return view('movies.index')->with('movies', $movie);
+    public function sortBy(){
+        
     }
 
     /**
@@ -115,7 +122,8 @@ class MovieController extends Controller
     {
         return view('movies.show', [
             'movie' => $id,
-            'movies' => Movie::all()
+            'movies' => Movie::all(),
+            'actors'=>Actor::get(),
         ]);
     }
 

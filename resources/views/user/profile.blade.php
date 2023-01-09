@@ -22,7 +22,7 @@
 
             <div class="row m-3 p-2">
                 <div class="col-2 p-2"><b>Username</b></div>
-                <input type="text" name="email" id="" class="col-5 p-2 bg-dark border border-white" placeholder="username">
+                <input type="text" name="email" id="" class="col-5 p-2 bg-dark border border-white" placeholder="name">
             </div>
 
             <div class="row m-3 p-2">

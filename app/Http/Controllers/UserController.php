@@ -13,8 +13,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        
+        return view('user.profile');
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -68,7 +70,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
