@@ -22,7 +22,7 @@ class MovieSeeder extends Seeder
             'title' => "The Greatest Showmen",
             'Description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
             'release_date' => "2021-04-12",
-            'thumbnail_source' => "thumbnail_greatest.jpeg",
+            'thumbnail_source' => "thumbnail_greatest.jpeg", 
             'background_source' => "background_greatest.jpeg",
             'director' => 'lorem',
         ]);
