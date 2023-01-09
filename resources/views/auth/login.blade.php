@@ -14,28 +14,27 @@
                     {{-- Email --}}
                     <div>
                         <label for="email" class="form-label text-white">Email</label>
-                        <input type="email" class="mt-1 form-control w-full" name="email" id="email"
-                            value="{{ old('email') }}">
+                        <input type="email" class="mt-1 form-control w-full bg-dark text-white" name="email" id="email"
+                            value="{{ old('email') }}" placeholder="Enter your email">
                     </div>
 
                     {{-- Password --}}
                     <div class="mt-4">
                         <label for="password" class="form-label text-white">Password</label>
-                        <input type="password" class="mt-1 form-control w-full" name="password"
-                            id="password>
+                        <input type="password" class="mt-1 form-control w-full bg-dark text-white" name="password"
+                            id="password" placeholder="Enter your password">
                     </div>
 
                     {{-- Remember Me --}}
-                    <div class="block
-                            mt-4">
-                        <label for="remember_me" class="inline-flex items-center text-white">
-                            <input id="remember_me" type="checkbox"
-                                class="form-check-input rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                name="remember" style="height: 20px; width: 20px">
-                            <span class="ml-2 text-sm text-gray-600 align-middle">{{ __('Remember me') }}</span>
+                    <div class="block mt-4">
+                        <label for="remember" class="inline-flex items-center text-white">
+                            <input id="remember" type="checkbox" class="form-check-input rounded" name="remember"
+                                style="height: 20px; width: 20px">
+                            <span class="text-sm align-middle">{{ __('Remember me') }}</span>
                         </label>
                     </div>
 
+                    {{-- Errors --}}
                     @if ($errors->any())
                         <div class="mt-3">
                             @foreach ($errors->all() as $error)
@@ -46,9 +45,15 @@
 
                     {{-- Submit --}}
                     <div class="d-flex justify-content-center mt-4">
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                        <button type="submit" class="btn btn-danger w-100">Login →</button>
                     </div>
                 </form>
+
+                <div class="mt-3">
+                    <p class="text-white text-center">Dont have an account?
+                        <a href="{{ route('register.create') }}" class="text-decoration-none text-danger">Register now!</a>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
