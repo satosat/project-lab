@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="banner bg-dark text-white">
-        <img src={{ 'images/'.$movie->background_source }} alt="" style="height: 500px; width: 100%; opacity: 0.5">
+        <img src={{ url("images/".$movie->background_source) }} alt="" style="height: 500px; width: 100%; opacity: 0.5">
 
         <div class="content d-flex justify-content-evenly mx-5 mt-5">
             <div class="col">
@@ -21,7 +21,7 @@
                         {{-- @endforeach --}}
                     </div>
                 </div>
-
+ 
                 <div class="row m-4">
                     <div class="col-sm-2">Release Year</div>
                     <div class="col">{{ $movie->release_date }}</div>
@@ -47,19 +47,17 @@
         </div>
 
         <div class="row">
-            {{-- @foreach ($collection as $item) --}}
+            @foreach ($actors as $actor)
             <div class="col-1 mx-5">
                 <div class="card bg-dark text-white border-0" style="width: 200px; ">
                     <img src="/images/encanto.jpeg" alt="" class="card-img-top">
                     <div class="card-body bg-danger">
-                        <div class="actor-name card-title">Keanu Reeves</div>
-                        <div class="actor-character d-flex justify-content-between">Thomas A.Anderson</div>
+                        <div class="actor-name card-title">{{ $actor->name }}</div>
+                        <div class="actor-character d-flex justify-content-between">character name</div>
                     </div>
                 </div>
             </div>
-            {{-- @endforeach --}}
-            <div>
-            </div>
+            @endforeach
 
             {{-- More --}}
             <div class="mt-4 text-white">
