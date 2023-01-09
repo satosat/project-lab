@@ -140,9 +140,12 @@
         <div class="mt-3 d-flex justify-content-between">
             <div class="logo-text text-white d-flex m-5 align-self-center">
                 <div class="logo px-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-window" viewBox="0 0 16 16">
-                        <path d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
-                        <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm13 2v2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zM2 14a1 1 0 0 1-1-1V6h14v7a1 1 0 0 1-1 1H2z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                        class="bi bi-window" viewBox="0 0 16 16">
+                        <path
+                            d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
+                        <path
+                            d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm13 2v2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zM2 14a1 1 0 0 1-1-1V6h14v7a1 1 0 0 1-1 1H2z" />
                     </svg>
                 </div>
                 <p class="text" style="font-size: 150%">Show</p>
@@ -150,7 +153,8 @@
             <div class="search-movie mx-5 align-self-center">
                 <form action={{ route('home') }}>
                     <div class="form-outline btn-secondary d-flex">
-                        <input type="search" id="" class="form-control bg-dark text-white mx-3" placeholder="Search movie..."  name="search"/>
+                        <input type="search" id="" class="form-control bg-dark text-white mx-3"
+                            placeholder="Search movie..." name="search" />
                         <input type="submit" class="btn btn-primary" value="Search">
                     </div>
                 </form>
@@ -161,7 +165,8 @@
         <div class="text-white row mx-5">
             @foreach ($genres as $genre)
                 <div class="col m-2">
-                    <button type="button" class="btn btn-secondary" style="width:150px;" onclick="">{{ $genre->genre }}</button>
+                    <button type="button" class="btn btn-secondary" style="width:150px;"
+                        onclick="">{{ $genre->genre }}</button>
                 </div>
             @endforeach
         </div>
@@ -195,17 +200,20 @@
             @foreach ($movies as $movie)
                 <div class="card bg-dark text-white border-0 m-3" style="width: 230px">
                     <a href={{ 'movies/' . $movie->id }} style="text-decoration:none;color:white">
-                        <img src={{ 'images/'.$movie->thumbnail_source }} alt="" class="card-img-top mt-2"
+                        <img src={{ 'images/' . $movie->thumbnail_source }} alt="" class="card-img-top mt-2"
                             style="width:100%; height:300px">
                         <div class="card-body">
-                            <div class="card-title"><h5>{{ $movie->title }}</h5></div>
+                            <div class="card-title">
+                                <h5>{{ $movie->title }}</h5>
+                            </div>
                             <div class="card-text d-flex justify-content-between">
                                 <div class="year">{{ $movie->release_date }}</div>
                                 {{-- Movie Search Login --}}
                                 <div class="add">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                         fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                        <path
+                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                                     </svg>
                                 </div>
                             </div>

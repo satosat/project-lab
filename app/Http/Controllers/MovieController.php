@@ -28,21 +28,21 @@ class MovieController extends Controller
     {
         $movies = null;
 
-        if($request->get('search')){
+        if ($request->get('search')) {
             $mov = $request->get('search');
-            $movies = Movie::where('title', 'LIKE', "%$mov%")->get();
-        }else{
-            $movies = Movie::all();
+            $movies = Movie::where('title', 'LIKE', "%$mov%")->paginate(5);
+        } else {
+            $movies = Movie::paginate(5);
         }
 
         return view('movies.index', [
-            'movies'=>$movies,
+            'movies' => $movies,
             'genres' => GenreType::all(),
         ]);
     }
 
-    public function sortBy(){
-        
+    public function sortBy()
+    {
     }
 
     /**
@@ -123,7 +123,7 @@ class MovieController extends Controller
         return view('movies.show', [
             'movie' => $id,
             'movies' => Movie::all(),
-            'actors'=>Actor::get(),
+            'actors' => Actor::get(),
         ]);
     }
 
