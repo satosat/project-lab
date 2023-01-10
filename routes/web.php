@@ -38,8 +38,8 @@ Route::get('/actors/{id}', [ActorController::class, 'show'])->name('actors.show'
 
 // User
 Route::get('/profile', [UserController::class, 'index'])->name('user');
-Route::post('/profile/update/{id}', [UserController::class, 'updateProfile'])->name('user.updateProfile');
-Route::post('/profile/image/update/{id}', [UserController::class, 'updateImage'])->name('user.updateImage');
+Route::put('/profile/update/{id}', [UserController::class, 'updateProfile'])->name('user.updateProfile');
+Route::put('/profile/image/update/{id}', [UserController::class, 'updateImage'])->name('user.updateImage');
 
 // Watchlist
 Route::get('/watchlist', [WatchlistController::class, 'index'])->name('watchlists.search');

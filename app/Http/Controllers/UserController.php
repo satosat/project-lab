@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +52,6 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
     }
 
     /**
@@ -78,17 +82,18 @@ class UserController extends Controller
         ]);
 
         User::where('id', $id)->update([
-            'username'=>$request->username,
-            'email'=>$request->email,
-            'dob'=>$request->dob,
-            'phone'=>$request->phone,
+            'username' => $request->username,
+            'email' => $request->email,
+            'dob' => $request->dob,
+            'phone' => $request->phone,
         ]);
 
         return redirect('/profile');
     }
 
-    public function updatePicture(Request $request, $id){
-       
+    public function updateImage(Request $request, $id)
+    {
+
         $request->validate([
             'image_source' => 'required',
         ]);

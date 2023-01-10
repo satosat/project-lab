@@ -15,6 +15,16 @@
                     <a class="nav-link" href="{{ route('actors') }}">Actors</a>
                 </li>
                 @auth
+                    {{-- Watchlist --}}
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="{{ route('watchlists.search') }}">My Watchlist</a>
+                    </li>
+
+                    {{-- Profile --}}
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="{{ route('user') }}">Profile</a>
+                    </li>
+
                     {{-- Logout --}}
                     <li class="nav-item me-3">
                         <form action="{{ route('logout') }}" method="POST">
