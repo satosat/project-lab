@@ -21,7 +21,7 @@ class GenreSeeder extends Seeder
         $genres = GenreType::all();
 
         foreach (Movie::all() as $movie) {
-            $range = fake()->numberBetween(0, count($genres) - 1);
+            $range = fake()->numberBetween(2, count($genres) - 1);
 
             for ($i = 0; $i < $range; $i++) {
                 Genre::create([

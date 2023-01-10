@@ -165,7 +165,7 @@
                             <div class="card-text d-flex justify-content-between">
                                 <div class="year">{{ $movie->release_date }}</div>
 
-                                {{-- Movie Search Login --}}
+                                {{-- Add to watchlist --}}
                                 <div class="add" style="height: 25px; width: 25px">
                                     <form action="{{ route('watchlists.store', ['id' => $movie->id]) }}" method="POST">
                                         @csrf

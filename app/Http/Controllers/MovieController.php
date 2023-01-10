@@ -154,12 +154,12 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Movie $id)
+    public function show($id)
     {
         return view('movies.show', [
-            'movie' => $id,
-            'movies' => Movie::all(),
-            'actors' => Actor::get(),
+            'movie' => Movie::findOrFail($id),
+            'movies' => Movie::paginate(5),
+            'characters' => Character::where('movie_id', $id)->get(),
         ]);
     }
 
