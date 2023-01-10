@@ -22,7 +22,7 @@ Route::redirect('/', '/movies');
 Route::get('/movies', [MovieController::class, 'index'])->name('home');
 Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
 Route::post('/movies', [MovieController::class, 'store'])->name("movies.store");
-Route::get('/movies/sort',[MovieController::class, 'sortBy'])->name('sort');
+Route::get('/movies/sort', [MovieController::class, 'sortBy'])->name('sort');
 Route::get('/movies/{id}/edit', [MovieController::class, 'edit'])->name('movies.edit');
 ROute::put('/movies/{id}', [MovieController::class, 'update'])->name('movies.update');
 Route::post('/movies', [MovieController::class, 'store'])->name("movies.store");
@@ -42,9 +42,10 @@ Route::post('/profile/update/{id}', [UserController::class, 'updateProfile'])->n
 Route::post('/profile/image/update/{id}', [UserController::class, 'updateImage'])->name('user.updateImage');
 
 // Watchlist
-Route::get('/watchlist', [WatchlistController::class, 'index'])->name('search watch');
+Route::get('/watchlist', [WatchlistController::class, 'index'])->name('watchlists.search');
+Route::post('/watchlist/{id}', [WatchlistController::class, 'store'])->name('watchlists.store');
+Route::put('/watchlist/{id}', [WatchlistController::class, 'update'])->name('watchlists.update');
 
 Route::get('/actors/{id}/edit', [ActorController::class, 'edit'])->name("actors.edit");
 Route::put('/actors/{id}', [ActorController::class, 'update'])->name('actors.update');
 Route::delete('/actors/{id}', [ActorController::class, 'destroy'])->name('actors.destroy');
-
