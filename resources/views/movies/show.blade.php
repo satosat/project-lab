@@ -73,7 +73,8 @@
             @foreach ($characters as $character)
                 <div class="col-1 mx-5 mt-4">
                     <div class="card bg-dark text-white border-0" style="width: 200px;">
-                        <img src="{{ asset('/storage/images/thumbnail/encanto.jpeg') }}" class="card-img-top">
+                        <img src="{{ asset('/storage/images/actor/' . $character->actor->image_source) }}"
+                            class="card-img-top" style="height: 250px">
                         <div class="card-body bg-danger" style="height: 110px">
                             <div class="actor-name card-title">{{ $character->actor->name }}</div>
                             <div class="actor-character d-flex justify-content-between">{{ $character->name }}</div>

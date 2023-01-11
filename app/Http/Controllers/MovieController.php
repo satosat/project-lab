@@ -7,7 +7,6 @@ use App\Models\Character;
 use App\Models\Genre;
 use App\Models\GenreType;
 use App\Models\Movie;
-use App\Models\Watchlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -75,10 +74,6 @@ class MovieController extends Controller
             $movie->random(),
             $movie->random(),
         ];
-    }
-
-    public function sortBy()
-    {
     }
 
     /**
@@ -247,8 +242,6 @@ class MovieController extends Controller
                 ]);
             }
         });
-
-
 
         return redirect(route('movies.show', ['id' => $id]));
     }

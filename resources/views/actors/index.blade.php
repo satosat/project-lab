@@ -30,7 +30,7 @@
         <div class="d-flex row justify-content-evenly gap-4 mt-3">
             @foreach ($actors as $actor)
                 <div class="card col-4 p-0 bg-dark" style="width: 18rem; border-color: white;">
-                    <img src="{{ url('images/thumbnail_encanto.jpeg') }}" class="card-img-top">
+                    <img src="{{ asset('storage/images/actor/' . $actor->image_source) }}" class="card-img-top h-100">
                     <div class="card-body">
                         <h5 class="text-white card-title">{{ $actor->name }}</h5>
                         @if (count($actor->characters))
