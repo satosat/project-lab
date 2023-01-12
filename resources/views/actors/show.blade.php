@@ -44,12 +44,25 @@
             <div class="d-flex row justify-content-start gap-5 mt-3" style="margin-left: 2.25px">
                 @foreach ($actor->characters as $character)
                     <div class="card col-4 p-0 bg-dark" style="width: 12rem; border-color: white;">
-                        <img src="{{ asset('storage/images/thumbnail/' . $character->movie->thumbnail_source) }}"
-                            class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="text-white card-title">{{ $character->name }}</h5>
-                            <p class="text-white card-text">{{ $character->movie->title }}</p>
-                        </div>
+                        <a href="{{ route('movies.show', ['id' => $character->movie->id]) }}" class="text-decoration-none">
+                            <img src="{{ asset('storage/images/thumbnail/' . $character->movie->thumbnail_source) }}"
+                                class="card-img-top">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="card-body">
+                                    <h5 class="text-white card-title">{{ $character->name }}</h5>
+                                    <p class="text-white card-text">{{ $character->movie->title }}</p>
+                                </div>
+                                <div class="add" style="height: 25px; width: 25px">
+                                    <form action="{{ route('watchlists.store', ['id' => $character->movie->id]) }}"
+                                        method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" id="{{ $character->movie->id }}">
+                                        <button type="submit" class="pr-1"
+                                            style="border: none; background: none; color:white">+</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
