@@ -34,7 +34,7 @@
 
             {{-- DOB --}}
             <div class="mt-3">
-                <label for="dob" class="form-label text-white mt-3">Date of Birth</label>
+                <label for="dob" class="form-label text-white">Date of Birth</label>
                 <input type="date" name="dob" id="dob" class="form-control bg-dark text-white"
                     value="{{ old('dob') }}">
             </div>
@@ -48,14 +48,14 @@
 
             {{-- Image URL --}}
             <div class="mt-3">
-                <label for="image_file" class="form-label text-white mt-3">Image</label>
+                <label for="image_file" class="form-label text-white">Image</label>
                 <input type="file" class="form-control bg-dark text-white" id="image_file" name="image_file"
                     value="{{ old('image_file') }}">
             </div>
 
             {{-- Popularity --}}
             <div class="mt-3">
-                <label for="popularity" class="form-label text-white mt-3">Popularity</label>
+                <label for="popularity" class="form-label text-white">Popularity</label>
                 <input type="number" step="0.01" class="form-control bg-dark text-white" id="popularity"
                     name="popularity" value="{{ old('popularity') }}">
             </div>

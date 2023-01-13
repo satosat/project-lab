@@ -15,10 +15,12 @@
                     <a class="nav-link" href="{{ route('actors') }}">Actors</a>
                 </li>
                 @auth
-                    {{-- Watchlist --}}
-                    <li class="nav-item me-2">
-                        <a class="nav-link" href="{{ route('watchlists.search') }}">My Watchlist</a>
-                    </li>
+                    @can('user')
+                        {{-- Watchlist --}}
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="{{ route('watchlists.search') }}">My Watchlist</a>
+                        </li>
+                    @endcan
 
                     {{-- Profile --}}
                     <li class="nav-item me-2">
